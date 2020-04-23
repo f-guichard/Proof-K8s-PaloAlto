@@ -1,3 +1,10 @@
+.vscode
+.pytest_cache
+__pycache__
+venv
+*.code-workspace
 .credentials
 .secrets
-venv
+.eggs
+*.pyc
+*.egg-info
