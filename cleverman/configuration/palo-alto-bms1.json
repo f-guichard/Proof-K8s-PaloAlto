@@ -1,0 +1,8 @@
+{
+    "endpoint": "10.100.180.62",
+    "port": "443",
+    "snatpool": [
+        "x.x.x.x/x",
+        "y.y.y.y/y"
+    ]
+}

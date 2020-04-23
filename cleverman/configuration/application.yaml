@@ -1,0 +1,3 @@
+appconfig:
+  instance_name: "Cleverman WIP"
+  port: 25000
