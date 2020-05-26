@@ -20,12 +20,12 @@ class Config(object):
     def __init__(self):
         self._import_static_config()
 
-
-    def getConfig(self) -> map:
+    @classmethod
+    def getConfig(cls) -> map:
         dict_cfg: dict = {}
 
-        dict_cfg['name'] = self._app_instance_name
-        dict_cfg['port'] = self._app_socker_port
+        dict_cfg['name'] = cls._app_instance_name
+        dict_cfg['port'] = cls._app_socker_port
         
         return dict_cfg 
 

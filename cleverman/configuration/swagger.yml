@@ -1,0 +1,30 @@
+swagger: "2.0"
+info:
+  description: Operations offertes par Metalloikaaas
+  version: "0.1.0"
+  title: "OpenAPI : Swagger de Cleverman" 
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/"
+
+paths:
+  /v1/vsys:
+    get:
+      operationId: "devices.paloalto.vsys.get_vsys"
+      tags:
+        - "VirtualSystem"
+      summary: "recuperer des Vsys"
+      description: "permet d'avoir +"
+      responses:
+        200:
+          description: "Vsys recuperes"
+          schema:
+            type: "array"
+            items:
+              properties:
+                vsysname:
+                  type: "string"
+

@@ -1,9 +1,11 @@
 from flask import Flask
-from cleverman.config import Config
-from cleverman.devices.paloalto.device import Device 
+from config import Config
+from devices.paloalto.device import Device 
 import os
+import connexion
 
-app = Flask(__name__)
+app = connexion.App(__name__, specification_dir='./configuration')
+app.add_api('swagger.yml')
 
 ## Global settings
 ## TODO: refactor
@@ -11,14 +13,17 @@ app = Flask(__name__)
 cleverman_config = Config.getConfig()
 
 # Get port from Config Object
-if os.getenv("VCAP_APP_PORT") > 1024:
-   cfPort = int(os.getenv("VCAP_APP_PORT"))
+if os.getenv("PORT") is not None:
+   dyn_port = int(os.getenv("PORT"))
 else:
-   cfPort = 8080
+   dyn_port = 8080
 
 
 @app.route('/')
 def index():
+    """
+    Main access
+    """
     return "Hello from Cleverman"
 
 
@@ -33,17 +38,10 @@ def return_devices_infos():
 
 
 @app.route('/v1/device/{name:str}')
-def return_devices_infos(name):
+def return_device_infos(name):
     return mock.devices_infos(name)
-
-
-@app.route('/v1/admin/infos')
-def return_all_vrf():
-    return mock.get_vrf()
-
-
 
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host='0.0.0.0', port=dynPort)
+    app.run(host='192.168.56.140', port=dyn_port)
